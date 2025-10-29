@@ -47,7 +47,7 @@ Each button on the main window opens a draggable mini-window:
 ## Deployment
 The website is hosted on GitHub Pages:
 https://mherrera2005.github.io/my-portfolio-website/
-To run locally, clone type https://michelleherreraprojects.com in a web browser.
+To run, type https://michelleherreraprojects.com in a web browser.
 
 ## Credits
 - **Background music**: "Calm Technology" by Kevin MacLeod (incompetech.com)
