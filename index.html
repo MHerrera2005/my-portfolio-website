@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>michelle's portfolio</title>
+        <link rel="icon" type="image/gif" href="logo.gif">
+        <link rel="stylesheet" href="style.css"> <!-- Link to my CSS file -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Jersey+15&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Jersey+15&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="ticker top" aria-hidden="true"></div>
+            <!-- Mute button -->
+            <button id="muteToggle" class="aero-btn mute-btn" aria-pressed="true">
+            🔈 music on
+            </button>
+            <div class="stage">
+                <div class="window">
+                    <div class="window-header">
+                        <span class="window-title">🍏 welcome!</span>
+                    </div>
+                    <div class="window-content">
+                        <h1>Michelle Herrera-Cuen</h1>
+                        <h6>engineer, developer, and environmentalist !</h6>
+                        <p>Hello! I’m a junior Computer Engineering student at CSULB. I love turning ideas into real systems that create impact and inspire change.</p>
+                        <div class="button-group">
+                            <button class="aero-btn window-btn" data-win="about">about</button>
+                            <button class="aero-btn window-btn" data-win="links">links</button>
+                            <button class="aero-btn window-btn" data-win="work">work</button>
+                            <button class="aero-btn window-btn" data-win="contact">contact me</button>
+                            <button class="aero-btn" onclick="window.open('resume.pdf','_blank','noopener')">view my resume</button>
+                        </div>
+                        <!-- Music + SFX -->
+                        <audio id="bgm" src="backgroundmusic.mp3" loop preload="auto" autoplay muted></audio>
+                        <audio id="sfx-hover" src="tick.mp3" preload="auto"></audio>
+                        <audio id="sfx-click" src="click.mp3" preload="auto"></audio>
+                        <!-- SECTIONS -->
+                        <!-- ===== Floating Window Templates (hidden) ===== -->
+                        <template id="tpl-about">
+                        <div class="about-flex">
+                            <img src="me.jpg" alt="Michelle portrait" class="about-pic">
+                            <div class="about-text">
+                            <h2>Michelle Herrera-Cuen</h2>
+                            <p><strong>Research Student</strong> · B.S. Computer Engineering <em>(Expected 2027)</em></p>
+                            <p>I build <strong>programs, games, websites</strong>, and <strong>embedded systems</strong>. Junior student with a strong foundation in embedded systems and software development. Passionate about game development and building secure, efficient robotic systems. Skilled in analyzing electrical currents and designing computational devices, with a drive to educate the next generation of technology users and innovators.</p>
+                            <h4>Other interests</h4>
+                            <p>Reading, Writing, Poetry, Game dev, singing, violin, piano, harmonica, learning guitar, and building robots!</p>
+                            <h4>Languages</h4>
+                            <p>English (native), Spanish (native), French (conversational)</p>
+                            </div>
+                        </div>
+                        </template>
+
+                        <template id="tpl-links">
+                        <div class="link-icon-grid">
+                            <a class="icon-tile" href="https://replit.com/@MHerrera2005" target="_blank" rel="noopener">
+                            <img src="replit.png" alt="" aria-hidden="true">
+                            <span>Replit</span>
+                            </a>
+                            <a class="icon-tile" href="https://github.com/MHerrera2005" target="_blank" rel="noopener">
+                            <img src="github.png" alt="" aria-hidden="true">
+                            <span>GitHub</span>
+                            </a>
+                            <a class="icon-tile" href="https://www.linkedin.com/in/mhc05" target="_blank" rel="noopener">
+                            <img src="linkedin.png" alt="" aria-hidden="true">
+                            <span>LinkedIn</span>
+                            </a>
+                            <a class="icon-tile" href="resume.pdf" target="_blank" rel="noopener">
+                            <img src="pdf.png" alt="" aria-hidden="true">
+                            <span>Resume</span>
+                            </a>
+                        </div>
+                        </template>
+
+                        <template id="tpl-work">
+                        <h3>Accepting work offers via <a href="mailto:mherrerachelly2005@gmail.com">email</a> — web design & software development</h3>
+
+                        <h4 class="work-section">Robotics</h4>
+                        <div class="project-list">
+
+                            <!-- CECS 311 Line-Following Robot -->
+                            <article class="project-card">
+                            <div class="project-media">
+                                <iframe
+                                    width="85"
+                                    height="150"
+                                    src="https://youtube.com/embed/4er7I_ktTnw?feature=shareautoplay=1&mute=1&loop=1&playlist=4er7I_ktTnw"
+                                    title="Line Following Robot Demo"
+                                    frameborder="0"
+                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="project-body">
+                                <h5>Line-Following Robot</h5>
+                                <p>Designed and built a battery-powered line-following robot using only analog components. Integrated <strong>photodiode light sensors, LM358 op-amp comparators, and an L293D H-Bridge motor driver</strong> for control. Performed full circuit calculations including voltage divider, biasing, gain, and feedback control. Simulated each subsystem in <strong>LTSpice</strong>. Achieved stable real-time line detection and bidirectional motor control through precise analog feedback.</p>
+                                <a class="chip" href="CECS311_LineFollowingRobot.pdf" target="_blank" rel="noopener">final report</a>
+                            </div>
+                            </article>
+
+                            <!-- CECS 346 Garage Door Car -->
+                            <article class="project-card">
+                            <div class="project-media">
+                                <iframe
+                                    width="260"
+                                    height="145"
+                                    src="https://youtube.com/embed/qOiVcUfaHlM?mute=1"
+                                    title="Garage Door Car Demo"
+                                    frameborder="0"
+                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="project-body">
+                                <h5>Garage Door Robotic Car</h5>
+                                <p>Collaboratively designed a smart garage and autonomous car system using the <strong>TM4C123GH6PM microcontroller, stepper motors, and IR sensors</strong>. Implemented <strong>GPIO control, SysTick timers, interrupt-driven FSM logic, and sensor-based automation</strong> to synchronize the car’s movement with the garage door. The garage automatically detects the approaching car, opens, waits until it’s parked, and closes autonomously with LED status indicators. Demonstrated full system integration, debugging, and real-time coordination of two embedded subsystems in <strong>C</strong>.</p>
+                                <a class="chip" href="CECS346_GarageDoor.pdf" target="_blank" rel="noopener">final report</a>
+                            </div>
+                            </article>
+
+                            <!-- CECS 347 Following Robot -->
+                            <article class="project-card">
+                            <div class="project-media">
+                                <iframe
+                                    width="260"
+                                    height="145"
+                                    src="https://youtube.com/embed/hOsNUmCHar0?mute=1"
+                                    title="Object Following Robot Demo"
+                                    frameborder="0"
+                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="project-body">
+                                <h5>Object-Following Robot</h5>
+                                <p>Designed and programmed a two-mode robot car using a <strong>TM4C123 microcontroller, IR distance sensors, and DC motors</strong> controlled by <strong>PWM</strong> and <strong>ADC</strong> feedback. The system toggles between Object-Following and Wall-Following modes using interrupt-driven GPIO inputs, with real-time motion control and LED status indicators. Implemented precise <strong>sensor calibration, PWM-based speed control, and embedded algorithms</strong> for autonomous navigation and obstacle avoidance.</p>
+                                <a class="chip" href="CECS 347_FollowingRobot.pdf" target="_blank" rel="noopener">final report</a>
+                            </div>
+                            </article>
+                        </div>
+
+                        <h4 class="work-section">Software / Games</h4>
+                        <div class="project-list">
+
+                            <!-- Haunted Mansion -->
+                            <article class="project-card">
+                            <div class="project-media">
+                                <iframe
+                                    width="260"
+                                    height="145"
+                                    src="https://youtube.com/embed/KO_wAXx0uW4?mute=1"
+                                    title="Haunted Mansion Demo"
+                                    frameborder="0"
+                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="project-body">
+                                <h5>Haunted Mansion</h5>
+                                <p>Text and <strong>Python Turtle Graphics</strong> adventure game with branching routes and puzzles, written in <strong>Python</strong> and hosted on Replit.</p>
+                                <a class="chip" href="https://replit.com/@MichelleHerrer7/Project-125-Shall-We-Play-a-GameMHerrera" target="_blank">play</a>
+                            </div>
+                            </article>
+
+                            <!-- Simple GUI -->
+                            <article class="project-card">
+                            <div class="project-media">
+                                <img src="SimpleGUI.png" alt="Simple GUI screenshot" width="220">
+                            </div>
+                            <div class="project-body">
+                                <h5>Simple GUI</h5>
+                                <p>Developed a multi-window graphical interface using <strong>GTK</strong> and <strong>C++</strong>, featuring modular classes for a login system, text viewer, image viewer, and image creator. Implemented user authentication, credential editing, file I/O, and interactive image manipulation (rotate, save as PNG/JPEG). Designed three custom image scenes (Octopus, Dog House, Cat) rendered with Cairo graphics, and built a text search/highlight tool. Ensured modular GUI design, consistent layout containers, and single-instance application flow for clean transitions between dialogs.</p>
+                                <a class="chip" href="https://github.com/MHerrera2005/SimpleGUI_CECS275_FinalProject" target="_blank">GitHub</a>
+                            </div>
+                            </article>
+
+                            <!-- Space Invaders -->
+                            <article class="project-card">
+                            <div class="project-media">
+                                <iframe
+                                    width="85"
+                                    height="150"
+                                    src="https://www.youtube.com/embed/11VMUxfnPGM?autoplay=1&mute=1&loop=1&playlist=11VMUxfnPGM"
+                                    title="Space Invaders Demo"
+                                    frameborder="0"
+                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="project-body">
+                                <h5>Embedded Space Invaders</h5>
+                                <p>Designed and programmed a real-time Space Invaders–style game using the <strong>TM4C123 microcontroller, Nokia 5110 LCD, potentiometer (ADC input), tactile switches (GPIO interrupts), and a 4-bit R-2R DAC</strong> for sound. Implemented <strong>modular C firmware, SPI graphics rendering, SysTick-based game timing, collision detection, and PWM-driven audio effects</strong>. Integrated analog and digital peripherals for smooth player control, enemy motion, and shooting mechanics. Overcame challenges such as LCD flicker, debouncing issues, and analog jitter through optimized interrupt handling and signal filtering.</p>
+                                <a class="chip" href="CECS347_SpaceInvaders.pdf" target="_blank" rel="noopener">final report</a>
+                            </div>
+                            </article>
+
+                            <!-- Find the Missing Item -->
+                            <article class="project-card is-soon">
+                            <div class="project-media">
+                                <img src="FindMissingItem.jpg" alt="Find Missing Item screenshot" width="220">
+                            </div>
+                            <div class="project-body">
+                                <h5>Find the Missing Item!</h5>
+                                <p>Under production — a cozy puzzle game with crunchy pixel art. Player seeks and searched for items in a tricky environment. Will be developed with <strong>React.js</strong>. Coming soon!</p>
+                            </div>
+                            </article>
+
+                        </div>
+                        <p class="see-more"><a href="https://github.com/MHerrera2005" target="_blank">See more on GitHub →</a></p>
+                        </template>
+
+                        <template id="tpl-contact">
+                        <div class="contact-layout">
+                            <div>
+                            <h3>yayy mail!</h3>
+                            <p>The easiest way to contact me is through email.</p>
+                            <p><strong>email:</strong> <a href="mailto:mherrerachelly2005@gmail.com">mherrerachelly2005@gmail.com</a></p>
+                            <button class="aero-btn" onclick="window.location.href='mailto:mherrerachelly2005@gmail.com'">open email app</button>
+                            </div>
+                            <img src="logo.gif" alt="sparkly earth gif" class="earth-gif">
+                        </div>
+                        </template>
+                        <h6>© 2025 Michelle Herrera</h6>
+                    </div>
+                </div>
+                <script>
+                (() => {
+                // Map button data to template + title
+                const WIN_INFO = {
+                    about:   { tpl: 'tpl-about',   title: 'about me' },
+                    links:   { tpl: 'tpl-links',   title: 'links' },
+                    work:    { tpl: 'tpl-work',    title: 'work' },
+                    contact: { tpl: 'tpl-contact', title: 'contact me' }
+                };
+
+                let zTop = 2000; // stacking
+
+                function createFloatingWindow(kind, x = 120, y = 120){
+                    const meta = WIN_INFO[kind];
+                    if (!meta) return;
+
+                    const tmpl = document.getElementById(meta.tpl);
+                    if (!tmpl) return;
+
+                    const shell = document.createElement('div');
+                    shell.className = 'fly-window';
+                    shell.style.left = x + 'px';
+                    shell.style.top  = y + 'px';
+                    shell.style.zIndex = ++zTop;
+
+                    shell.innerHTML = `
+                    <div class="fly-header">
+                        <span class="fly-title">🍏 ${meta.title}</span>
+                        <div class="fly-controls">
+                        <button class="fly-btn minimize" aria-label="Minimize" title="Minimize">🗕</button>
+                        <button class="fly-btn maximize" aria-label="Maximize" title="Maximize">🗖</button>
+                        <button class="fly-btn close"    aria-label="Close"    title="Close">✕</button>
+                        </div>
+                    </div>
+                    <div class="fly-content"></div>
+                    `;
+
+                    const content = shell.querySelector('.fly-content');
+                    content.appendChild(tmpl.content.cloneNode(true));
+
+                    // close
+                    shell.querySelector('.close').addEventListener('click', () => shell.remove());
+
+                    // minimize (toggle content)
+                    shell.querySelector('.minimize').addEventListener('click', () => {
+                    shell.classList.toggle('is-min');
+                    });
+
+                    // maximize (toggle to near-full but leave borders visible)
+                    shell.querySelector('.maximize').addEventListener('click', () => {
+                    shell.classList.toggle('is-max');
+                    if (shell.classList.contains('is-max')) shell.style.zIndex = ++zTop;
+                    });
+
+                    // focus on mousedown
+                    shell.addEventListener('mousedown', () => shell.style.zIndex = ++zTop);
+
+                    // drag
+                    makeDraggable(shell, shell.querySelector('.fly-header'));
+
+                    document.body.appendChild(shell);
+                }
+
+                function makeDraggable(winEl, handleEl){
+                    let startX=0, startY=0, origX=0, origY=0, dragging=false;
+
+                    const onDown = (e) => {
+                    dragging = true;
+                    const point = ('touches' in e) ? e.touches[0] : e;
+                    startX = point.clientX;
+                    startY = point.clientY;
+                    const rect = winEl.getBoundingClientRect();
+                    origX = rect.left + window.scrollX;
+                    origY = rect.top  + window.scrollY;
+                    document.addEventListener('mousemove', onMove);
+                    document.addEventListener('touchmove', onMove, {passive:false});
+                    document.addEventListener('mouseup', onUp);
+                    document.addEventListener('touchend', onUp);
+                    e.preventDefault();
+                    };
+
+                    const onMove = (e) => {
+                    if (!dragging) return;
+                    const point = ('touches' in e) ? e.touches[0] : e;
+                    const dx = point.clientX - startX;
+                    const dy = point.clientY - startY;
+                    winEl.style.left = (origX + dx) + 'px';
+                    winEl.style.top  = (origY + dy) + 'px';
+                    if ('touches' in e) e.preventDefault();
+                    };
+
+                    const onUp = () => {
+                    dragging = false;
+                    document.removeEventListener('mousemove', onMove);
+                    document.removeEventListener('touchmove', onMove);
+                    document.removeEventListener('mouseup', onUp);
+                    document.removeEventListener('touchend', onUp);
+                    };
+
+                    handleEl.addEventListener('mousedown', onDown);
+                    handleEl.addEventListener('touchstart', onDown, {passive:false});
+                }
+
+                // Bind buttons
+                document.querySelectorAll('.window-btn').forEach((btn, idx) => {
+                    btn.addEventListener('click', () => {
+                    // Stagger new windows a bit
+                    createFloatingWindow(btn.dataset.win, 140 + idx*24, 120 + idx*18);
+                    // Optional: play your click SFX if present
+                    const clickSfx = document.getElementById('sfx-click');
+                    if (clickSfx) {
+                        const c = clickSfx.cloneNode(true); c.volume = 0.8; c.play().catch(()=>{});
+                    }
+                    });
+                });
+
+                })();
+                </script>
+
+                <!-- RIGHT COLUMN that stacks two panels -->
+                <div class="side-column" aria-hidden="false">
+                <!-- Top (badges) -->
+                <aside class="side-panel">
+                    <div class="panel-header"><span>🍏 badges</span></div>
+                    <div class="panel-body">
+                        <canvas id="starBadges" width="220" height="185"></canvas>
+                        <div class="panel-content">
+                            <!-- badges here -->
+                            <img src="catbadge.png" alt="badge 1">
+                            <img src="computerbadge.gif" alt="badge 2">
+                            <img src="imaginationbadge.gif" alt="badge 3">
+                            <img src="made_with_windowsbadge.gif" alt="badge 4">
+                            <img src="madewithtwopawsbadge.jpg" alt="badge 5">
+                            <img src="VSCodebadge.png" alt="badge 6">
+                            <a href="https://lovesick.cafe/grrrl" target="_blank" rel="noopener noreferrer">
+                                <img src="madebyagirlbadge.png" alt="Made by a Girl badge">
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            <!-- Bottom (blinkies) -->
+            <aside class="side-panel">
+                <div class="panel-header"><span>🍏 blinkies</span></div>
+                <div class="panel-body">
+                <canvas id="starBlinkies" width="220" height="185"></canvas>
+                <div class="panel-content">
+                        <!-- blinkies here -->
+                        <img src="aliengirlblinkie.gif" alt="blinkie 1">
+                        <img src="blueskyblinkie.gif" alt="blinkie 2">
+                        <img src="blueblinkie.gif" alt="blinkie 3">
+                        <img src="rainbowsblinkie.gif" alt="blinkie 4">
+                        <img src="applesblinkie.gif" alt="blinkie 5">
+                        <img src="greenbestblinkie.gif" alt="blinkie 6">
+                        <img src="UnderTheSeablinkie.gif" alt="blinkie 7">
+                </div>
+                </div>
+            </aside>
+            </div>
+        </div>
+        <div class="ticker bottom" aria-hidden="true"></div>
+        <!-- embedded JavaScript for pixel star rain for each panel -->
+        <script>
+            (() => {
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // Pastel palette (green, pink, purple, blue, yellow)
+            const STAR_COLORS = ['#9BF6A9', '#FFB3DA', '#C8A6FF', '#9DD1FF', '#FFF59E'];
+
+            // 7x7 pixel star mask (1 = draw, 0 = empty). Symmetric, chunky Y2K rating-star vibe.
+            // Scale each "pixel" by s.px to render. derived from mathematical arrays!
+            const STAR_MASK = [
+                [0,0,1,1,1,0,0],
+                [0,1,1,1,1,1,0],
+                [1,1,1,1,1,1,1],
+                [1,1,1,1,1,1,1],
+                [1,1,1,1,1,1,1],
+                [0,1,1,1,1,1,0],
+                [0,0,1,1,1,0,0],
+            ];
+            const MASK_W = STAR_MASK[0].length;
+            const MASK_H = STAR_MASK.length;
+
+            function initStarPanel(canvasId) {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d', { alpha: true });
+                ctx.imageSmoothingEnabled = false;
+
+                function resizeCanvas() {
+                const rect = canvas.getBoundingClientRect();
+                const scale = window.devicePixelRatio || 1;
+                canvas.width  = Math.max(1, Math.floor(rect.width  * scale));
+                canvas.height = Math.max(1, Math.floor(rect.height * scale));
+                spawnStars();
+                }
+
+                const stars = [];
+                let targetCount = 0;
+
+                function spawnStars() {
+                // slightly sparser than before (bigger sprites)
+                targetCount = Math.max(8, Math.floor((canvas.width * canvas.height) / 4200));
+                while (stars.length < targetCount) stars.push(makeStar(true));
+                if (stars.length > targetCount) stars.length = targetCount;
+                }
+
+                function makeStar(randomY = false) {
+                // base pixel size (device pixels) — tweak for chunkiness
+                const px = 2 + Math.floor(Math.random() * 2); // 2–3
+                const spriteH = MASK_H * px;
+                const spriteW = MASK_W * px;
+
+                const x = Math.random() * (canvas.width - spriteW);
+                const y = randomY ? Math.random() * (canvas.height - spriteH) : -spriteH - Math.random() * 40;
+
+                // speed scales with canvas height a bit
+                const speed = (25 + Math.random() * 55) * (canvas.height / 320);
+                const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+                const alpha = 0.9; // solidish
+                return { x, y, px, color, speed, alpha, w: spriteW, h: spriteH };
+                }
+
+                function drawStar(s) {
+                const startX = Math.floor(s.x);
+                const startY = Math.floor(s.y);
+                ctx.globalAlpha = s.alpha;
+                ctx.fillStyle = s.color;
+
+                // iterate mask and draw scaled pixels
+                for (let row = 0; row < MASK_H; row++) {
+                    for (let col = 0; col < MASK_W; col++) {
+                    if (STAR_MASK[row][col]) {
+                        ctx.fillRect(startX + col * s.px, startY + row * s.px, s.px, s.px);
+                    }
+                    }
+                }
+                ctx.globalAlpha = 1;
+                }
+
+                let rafId = null;
+                let last = performance.now();
+
+                function step(now) {
+                const dt = Math.min(0.05, (now - last) / 1000);
+                last = now;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                for (let i = 0; i < stars.length; i++) {
+                    const s = stars[i];
+                    s.y += s.speed * dt;
+
+                    if (s.y > canvas.height) {
+                    stars[i] = makeStar(false);
+                    continue;
+                    }
+                    drawStar(s);
+                }
+
+                rafId = requestAnimationFrame(step);
+                }
+
+                const ro = new ResizeObserver(resizeCanvas);
+                ro.observe(canvas);
+                resizeCanvas();
+
+                if (!prefersReduced) {
+                last = performance.now();
+                rafId = requestAnimationFrame(step);
+                }
+
+                window.addEventListener('pagehide', () => { if (rafId) cancelAnimationFrame(rafId); }, { once: true });
+            }
+
+            // init both stacked right-side canvases
+            initStarPanel('starBadges');
+            initStarPanel('starBlinkies');
+            })();
+        </script>
+        <!-- embedded JavaScript for audio and button effects -->
+        <script>
+            (() => {
+            const bgm = document.getElementById('bgm');
+            const sfxHover = document.getElementById('sfx-hover');
+            const sfxClick = document.getElementById('sfx-click');
+            const muteBtn = document.getElementById('muteToggle');
+            const aeroButtons = document.querySelectorAll('.aero-btn');
+
+            let audioArmed = false;     // becomes true on first user interaction
+            let muted = false;          // one toggle to mute music + SFX together (easy)
+
+            // try to play music only after a user gesture(buffer and stability test)
+            const armAudio = () => {
+                if (audioArmed) return;
+                audioArmed = true;
+                bgm.volume = 0.5; // comfy default
+                if (!muted) {
+                bgm.play().catch(() => {/* ignored: user can press mute later */});
+                }
+                window.removeEventListener('click', armAudio);
+                window.removeEventListener('keydown', armAudio);
+                window.removeEventListener('touchstart', armAudio);
+            };
+            window.addEventListener('click', armAudio);
+            window.addEventListener('keydown', armAudio);
+            window.addEventListener('touchstart', armAudio, {passive:true});
+
+            // Mute toggle
+            function setMuted(state){
+                muted = state;
+                bgm.muted = muted;
+                muteBtn.classList.toggle('muted', muted);
+                muteBtn.setAttribute('aria-pressed', !muted ? 'true' : 'false');
+                muteBtn.textContent = muted ? '🔇 sound off' : '🔈 sound on';
+            }
+            muteBtn.addEventListener('click', () => setMuted(!muted));
+
+            // Helper: play a short SFX safely (clone so rapid clicks overlap)
+            function playSfx(audioEl){
+                if (muted) return;
+                const snd = audioEl.cloneNode(true);
+                snd.volume = 0.8;
+                snd.play().catch(()=>{});
+            }
+
+            // Hover tick with per-button cooldown (avoid machine-gun hover)
+            const HOVER_COOLDOWN_MS = 200;
+            aeroButtons.forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                const now = performance.now();
+                const last = +btn.dataset.lastHover || 0;
+                if (now - last >= HOVER_COOLDOWN_MS) {
+                    btn.dataset.lastHover = now;
+                    playSfx(sfxHover);
+                }
+                });
+
+                btn.addEventListener('click', () => {
+                playSfx(sfxClick);
+                // optional small visual press effect
+                btn.style.transform = 'translateY(0)';
+                setTimeout(()=> btn.style.transform = '', 80);
+                });
+            });
+
+            // Start in "music on" visual state (but won’t actually play until user interacts)
+            setMuted(false);
+            })();
+
+            // Unmute on first click
+            function handleFirstGesture() {
+                const bgm = document.getElementById('bgm');
+                if (!bgm) return;
+                bgm.muted = false;
+                bgm.volume = 0.5;
+                window.removeEventListener('click', handleFirstGesture);
+            }
+            window.addEventListener('click', handleFirstGesture);
+        </script>
+        <script>
+        document.querySelectorAll('video.locked-muted').forEach(v => {
+        v.volume = 0;
+        v.muted = true;
+        v.addEventListener('volumechange', () => {
+            if (v.volume !== 0 || !v.muted) {
+            v.volume = 0;
+            v.muted = true; // re-mute if user tries to unmute
+            }
+        });
+        });
+        </script>
+    </body>
+</html>
