@@ -36,7 +36,7 @@
                             <button class="aero-btn" onclick="window.open('resume.pdf','_blank','noopener')">view my resume</button>
                         </div>
                         <!-- Music + SFX -->
-                        <audio id="bgm" src="backgroundmusic.mp3" loop preload="auto" autoplay muted></audio>
+                        <audio id="bgm" src="backgroundmusic.mp3" loop preload="auto" autoplay muted playsinline></audio>
                         <audio id="sfx-hover" src="tick.mp3" preload="auto"></audio>
                         <audio id="sfx-click" src="click.mp3" preload="auto"></audio>
                         <!-- SECTIONS -->
@@ -46,7 +46,7 @@
                             <img src="me.jpg" alt="Michelle portrait" class="about-pic">
                             <div class="about-text">
                             <h2>Michelle Herrera-Cuen</h2>
-                            <p><strong>Research Student</strong> · B.S. Computer Engineering <em>(Expected 2027)</em></p>
+                            <p><strong>Research Student</strong> under Dr. [NAME HERE] · B.S. Computer Engineering <em>(Expected 2027)</em></p>
                             <p>I build <strong>programs, games, websites</strong>, and <strong>embedded systems</strong>. Junior student with a strong foundation in embedded systems and software development. Passionate about game development and building secure, efficient robotic systems. Skilled in analyzing electrical currents and designing computational devices, with a drive to educate the next generation of technology users and innovators.</p>
                             <h4>Other interests</h4>
                             <p>Reading, Writing, Poetry, Game dev, singing, violin, piano, harmonica, learning guitar, and building robots!</p>
@@ -79,6 +79,21 @@
 
                         <template id="tpl-work">
                         <h3>Accepting work offers via <a href="mailto:mherrerachelly2005@gmail.com">email</a> — web design & software development</h3>
+                        
+                        <h4 class="work-section">Research</h4>
+                        <div class="project-list">
+                            <!-- Research Project -->
+                            <article class="project-card">
+                            <div class="project-media">
+                                <img src="picture.png" alt="My Research Project" width="220">
+                            </div>
+                            <div class="project-body">
+                                <h5>Research Project</h5>
+                                <p>Hired as a research assitant under <strong>Dr. [NAME HERE]</strong> to ...</p>
+                                <a class="chip" href="CECS311_LineFollowingRobot.pdf" target="_blank" rel="noopener">final report</a>
+                            </div>
+                            </article>
+                        </div>
 
                         <h4 class="work-section">Robotics</h4>
                         <div class="project-list">
@@ -87,12 +102,10 @@
                             <article class="project-card">
                             <div class="project-media">
                                 <iframe
-                                    width="85"
-                                    height="150"
                                     src="https://youtube.com/embed/4er7I_ktTnw?feature=shareautoplay=1&mute=1&loop=1&playlist=4er7I_ktTnw"
                                     title="Line Following Robot Demo"
-                                    frameborder="0"
                                     allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    referrerpolicy="strict-origin-when-cross-origin"
                                     allowfullscreen>
                                 </iframe>
                             </div>
@@ -107,12 +120,10 @@
                             <article class="project-card">
                             <div class="project-media">
                                 <iframe
-                                    width="260"
-                                    height="145"
-                                    src="https://youtube.com/embed/qOiVcUfaHlM?mute=1"
+                                    src="https://youtube.com/embed/ypGVIf2WqU8?mute=1"
                                     title="Garage Door Car Demo"
-                                    frameborder="0"
                                     allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    referrerpolicy="strict-origin-when-cross-origin"
                                     allowfullscreen>
                                 </iframe>
                             </div>
@@ -127,12 +138,10 @@
                             <article class="project-card">
                             <div class="project-media">
                                 <iframe
-                                    width="260"
-                                    height="145"
                                     src="https://youtube.com/embed/hOsNUmCHar0?mute=1"
                                     title="Object Following Robot Demo"
-                                    frameborder="0"
                                     allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    referrerpolicy="strict-origin-when-cross-origin"
                                     allowfullscreen>
                                 </iframe>
                             </div>
@@ -151,12 +160,10 @@
                             <article class="project-card">
                             <div class="project-media">
                                 <iframe
-                                    width="260"
-                                    height="145"
-                                    src="https://youtube.com/embed/KO_wAXx0uW4?mute=1"
+                                    src="https://youtube.com/embed/M-3EMRzKbZg?mute=1"
                                     title="Haunted Mansion Demo"
-                                    frameborder="0"
                                     allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    referrerpolicy="strict-origin-when-cross-origin"
                                     allowfullscreen>
                                 </iframe>
                             </div>
@@ -183,12 +190,10 @@
                             <article class="project-card">
                             <div class="project-media">
                                 <iframe
-                                    width="85"
-                                    height="150"
-                                    src="https://www.youtube.com/embed/11VMUxfnPGM?autoplay=1&mute=1&loop=1&playlist=11VMUxfnPGM"
+                                    src="https://www.youtube.com/embed/11VMUxfnPGM?mute=1&playlist=11VMUxfnPGM"
                                     title="Space Invaders Demo"
-                                    frameborder="0"
                                     allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    referrerpolicy="strict-origin-when-cross-origin"
                                     allowfullscreen>
                                 </iframe>
                             </div>
@@ -576,28 +581,6 @@
             // Start in "music on" visual state (but won’t actually play until user interacts)
             setMuted(false);
             })();
-
-            // Unmute on first click
-            function handleFirstGesture() {
-                const bgm = document.getElementById('bgm');
-                if (!bgm) return;
-                bgm.muted = false;
-                bgm.volume = 0.5;
-                window.removeEventListener('click', handleFirstGesture);
-            }
-            window.addEventListener('click', handleFirstGesture);
-        </script>
-        <script>
-        document.querySelectorAll('video.locked-muted').forEach(v => {
-        v.volume = 0;
-        v.muted = true;
-        v.addEventListener('volumechange', () => {
-            if (v.volume !== 0 || !v.muted) {
-            v.volume = 0;
-            v.muted = true; // re-mute if user tries to unmute
-            }
-        });
-        });
         </script>
     </body>
 </html>
