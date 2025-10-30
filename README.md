@@ -27,10 +27,10 @@ Each button on the main window opens a draggable mini-window:
   - CECS 311 Line-Following Robot  
   - CECS 346 Garage Door Robotic Car  
   - CECS 347 Object-Following Robot  
-  - Haunted Mansion (C++ Replit game)  
+  - Haunted Mansion (Python Replit game)  
   - Simple GUI (C++ final project)  
   - Embedded Space Invaders (CECS 347, with DAC sound!)  
-  - *Find the Missing Item!* (upcoming indie game)  
+  - *Find the Missing Item!* (upcoming Python game)  
 - **Contact Me** — displays an email button, sparkly Earth animation, and mailto link.
 
 ### Audio & Feedback
