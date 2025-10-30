@@ -41,7 +41,7 @@ Each button on the main window opens a draggable mini-window:
   - “click” sound when pressed  
 
 ### Technical Features
-- Built entirely with **HTML5, CSS, and JavaScript** (no frameworks).  
+- Built entirely with **HTML, CSS, and JavaScript** (no frameworks).  
 - Responsive layout — scales well on desktop and tablet.
 
 ## Deployment
