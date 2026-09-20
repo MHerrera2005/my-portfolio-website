@@ -1,408 +1,903 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>michelle's portfolio</title>
-        <link rel="icon" type="image/gif" href="logo.gif">
-        <link rel="stylesheet" href="style.css"> <!-- Link to my CSS file -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Jersey+15&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Jersey+15&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div class="ticker top" aria-hidden="true"></div>
-            <!-- Mute button -->
-            <button id="muteToggle" class="aero-btn mute-btn" aria-pressed="true">
-            🔈 music on
-            </button>
-            <div class="stage">
-                <div class="window">
-                    <div class="window-header">
-                        <span class="window-title">🍏 welcome!</span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Michelle Herrera-Cuen — Computer Engineering student, researcher, developer, and robotics enthusiast.">
+    <meta name="theme-color" content="#0c2f25">
+    <title>Michelle Herrera-Cuen | Computer Engineering</title>
+
+    <link rel="icon" type="image/gif" href="logo.gif">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ===== Background / decorative frame ===== -->
+    <div class="site-glow site-glow-one" aria-hidden="true"></div>
+    <div class="site-glow site-glow-two" aria-hidden="true"></div>
+    <div class="ticker top" aria-hidden="true"></div>
+    <div class="ticker bottom" aria-hidden="true"></div>
+
+    <!-- ===== Audio control ===== -->
+    <button id="muteToggle" class="sound-toggle" aria-pressed="false" type="button">
+        <span aria-hidden="true">🔈</span> sound on
+    </button>
+
+    <!-- ===== Main site ===== -->
+    <main class="site-shell">
+
+        <!-- ===== Professional navigation ===== -->
+        <header class="site-nav">
+            <a class="brand" href="#" aria-label="Michelle Herrera-Cuen home">
+                <span class="brand-mark">MH</span>
+                <span class="brand-copy">
+                    <strong>Michelle Herrera-Cuen</strong>
+                    <small>Computer Engineering · CSULB</small>
+                </span>
+            </a>
+
+            <nav class="nav-links" aria-label="Portfolio navigation">
+                <button class="nav-link window-btn" data-win="about" type="button">about</button>
+                <button class="nav-link window-btn" data-win="work" type="button">work</button>
+                <button class="nav-link window-btn" data-win="links" type="button">links</button>
+                <button class="nav-link window-btn" data-win="contact" type="button">contact</button>
+                <a class="nav-resume" href="resume.pdf" target="_blank" rel="noopener">resume ↗</a>
+            </nav>
+        </header>
+
+        <!-- ===== Hero + side information ===== -->
+        <section class="hero-grid" aria-label="Introduction">
+            <article class="hero-card">
+                <div class="hero-content">
+                    <p class="eyebrow"><span class="status-dot"></span> available for opportunities</p>
+
+                    <h1>Debugging life,<br><span>compiling dreams.</span></h1>
+
+                    <p class="hero-lede">
+                        I'm Michelle — a Computer Engineering student, researcher, and developer
+                        interested in robotics, embedded systems, intelligent hardware, and
+                        building technology that can create a more sustainable future.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="primary-action window-btn" data-win="work" type="button">
+                            explore my work <span>→</span>
+                        </button>
+                        <button class="secondary-action window-btn" data-win="about" type="button">
+                            about me
+                        </button>
                     </div>
-                    <div class="window-content">
-                        <h1>Michelle Herrera-Cuen</h1>
-                        <h6>engineer, developer, and environmentalist !</h6>
-                        <p>Hello! I’m a junior Computer Engineering student at CSULB. I love turning ideas into real systems that create impact and inspire change.</p>
-                        <div class="button-group">
-                            <button class="aero-btn window-btn" data-win="about">about</button>
-                            <button class="aero-btn window-btn" data-win="links">links</button>
-                            <button class="aero-btn window-btn" data-win="work">work</button>
-                            <button class="aero-btn window-btn" data-win="contact">contact me</button>
-                            <button class="aero-btn" onclick="window.open('resume.pdf','_blank','noopener')">view my resume</button>
+
+                    <div class="hero-meta">
+                        <div>
+                            <span>01</span>
+                            <strong>Research</strong>
+                            <small>Robotics, bio-inspired systems & hardware</small>
                         </div>
-                        <!-- Music + SFX -->
-                        <audio id="bgm" src="backgroundmusic.mp3" loop preload="auto" autoplay muted playsinline></audio>
-                        <audio id="sfx-hover" src="tick.mp3" preload="auto"></audio>
-                        <audio id="sfx-click" src="click.mp3" preload="auto"></audio>
-                        <!-- SECTIONS -->
-                        <!-- ===== Floating Window Templates (hidden) ===== -->
-                        <template id="tpl-about">
-                        <div class="about-flex">
-                            <img src="me.jpg" alt="Michelle portrait" class="about-pic">
-                            <div class="about-text">
-                            <h2>Michelle Herrera-Cuen</h2>
-                            <p><strong>Research Student</strong> under Dr. Tairan Liu as part of the PACK Lab · B.S. Computer Engineering <em>(Expected 2027)</em></p>
-                            <p>I build <strong>programs, games, websites</strong>, and <strong>embedded systems</strong>. Junior student with a strong foundation in embedded systems and software development. Passionate about game development and building secure, efficient robotic systems. Skilled in analyzing electrical currents and designing computational devices, with a drive to educate the next generation of technology users and innovators.</p>
-                            <h4>Other interests</h4>
-                            <p>Reading, Writing, Poetry, Game dev, singing, violin, piano, harmonica, learning guitar, and building robots!</p>
-                            <h4>Languages</h4>
-                            <p>English (native), Spanish (native), French (conversational)</p>
-                            </div>
+                        <div>
+                            <span>02</span>
+                            <strong>Development</strong>
+                            <small>Firmware, software & machine learning</small>
                         </div>
-                        </template>
-
-                        <template id="tpl-links">
-                        <div class="link-icon-grid">
-                            <a class="icon-tile" href="https://replit.com/@MHerrera2005" target="_blank" rel="noopener">
-                            <img src="replit.png" alt="" aria-hidden="true">
-                            <span>Replit</span>
-                            </a>
-                            <a class="icon-tile" href="https://github.com/MHerrera2005" target="_blank" rel="noopener">
-                            <img src="github.png" alt="" aria-hidden="true">
-                            <span>GitHub</span>
-                            </a>
-                            <a class="icon-tile" href="https://www.linkedin.com/in/mhc05" target="_blank" rel="noopener">
-                            <img src="linkedin.png" alt="" aria-hidden="true">
-                            <span>LinkedIn</span>
-                            </a>
-                            <a class="icon-tile" href="resume.pdf" target="_blank" rel="noopener">
-                            <img src="pdf.png" alt="" aria-hidden="true">
-                            <span>Resume</span>
-                            </a>
+                        <div>
+                            <span>03</span>
+                            <strong>Impact</strong>
+                            <small>Technology for a sustainable future</small>
                         </div>
-                        </template>
-
-                        <template id="tpl-work">
-                        <h3>Accepting work offers via <a href="mailto:mherrerachelly2005@gmail.com">email</a> — web design & software development</h3>
-                        
-                        <h4 class="work-section">Research</h4>
-                        <div class="project-list">
-                            <!-- Research Project -->
-                            <article class="project-card">
-                            <div class="project-media">
-                                <img src="PACK-logo.png" alt="Research PACK Lab" width="250">
-                            </div>
-                            <div class="project-body">
-                                <h5>Research Project</h5>
-                                <p>Hired as a research assitant under <strong>Dr. Tairan Liu</strong>. In PACK Lab, I design a lightweight, end-to-end robotics ecosystem inspired by PX4/Pixhawk to simplify deployment of ground, marine, and articulated robots. Developing a configuration-over-coding workflow where users define robot topology, sensors, and kinematics through a desktop GUI that automatically generates, compiles, and flashes optimized firmware to low-cost microcontrollers (ESP32, Teensy, Arduino, STM32). Architecting modular abstraction layers to unify sensor integration, actuator control, communication protocols (I2C, SPI, UART), real-time telemetry, PID tuning, and calibration. The project targets elimination of the “integration wall” in robotics and will culminate in a public GitHub repository and a publishable research paper.</p>
-                                <a class="chip" href="https://pack-lab.github.io/" target="_blank" rel="noopener">PACK Lab</a>
-                            </div>
-                            </article>
-                        </div>
-
-                        <h4 class="work-section">Robotics</h4>
-                        <div class="project-list">
-
-                            <!-- CECS 311 Line-Following Robot -->
-                            <article class="project-card">
-                            <div class="project-media">
-                                <iframe
-                                    src="https://youtube.com/embed/4er7I_ktTnw?feature=shareautoplay=1&mute=1&loop=1&playlist=4er7I_ktTnw"
-                                    title="Line Following Robot Demo"
-                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="project-body">
-                                <h5>Line-Following Robot</h5>
-                                <p>Designed and built a battery-powered line-following robot using only analog components. Integrated <strong>photodiode light sensors, LM358 op-amp comparators, and an L293D H-Bridge motor driver</strong> for control. Performed full circuit calculations including voltage divider, biasing, gain, and feedback control. Simulated each subsystem in <strong>LTSpice</strong>. Achieved stable real-time line detection and bidirectional motor control through precise analog feedback.</p>
-                                <a class="chip" href="CECS311_LineFollowingRobot.pdf" target="_blank" rel="noopener">final report</a>
-                            </div>
-                            </article>
-
-                            <!-- CECS 346 Garage Door Car -->
-                            <article class="project-card">
-                            <div class="project-media">
-                                <iframe
-                                    src="https://youtube.com/embed/ypGVIf2WqU8?mute=1"
-                                    title="Garage Door Car Demo"
-                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="project-body">
-                                <h5>Garage Door Robotic Car</h5>
-                                <p>Collaboratively designed a smart garage and autonomous car system using the <strong>TM4C123GH6PM microcontroller, stepper motors, and IR sensors</strong>. Implemented <strong>GPIO control, SysTick timers, interrupt-driven FSM logic, and sensor-based automation</strong> to synchronize the car’s movement with the garage door. The garage automatically detects the approaching car, opens, waits until it’s parked, and closes autonomously with LED status indicators. Demonstrated full system integration, debugging, and real-time coordination of two embedded subsystems in <strong>C</strong>.</p>
-                                <a class="chip" href="CECS346_GarageDoor.pdf" target="_blank" rel="noopener">final report</a>
-                            </div>
-                            </article>
-
-                            <!-- CECS 347 Following Robot -->
-                            <article class="project-card">
-                            <div class="project-media">
-                                <iframe
-                                    src="https://youtube.com/embed/hOsNUmCHar0?mute=1"
-                                    title="Object Following Robot Demo"
-                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="project-body">
-                                <h5>Object-Following Robot</h5>
-                                <p>Designed and programmed a two-mode robot car using a <strong>TM4C123 microcontroller, IR distance sensors, and DC motors</strong> controlled by <strong>PWM</strong> and <strong>ADC</strong> feedback. The system toggles between Object-Following and Wall-Following modes using interrupt-driven GPIO inputs, with with bounded, timing-aware motion control and LED status indicators. Implemented precise <strong>sensor calibration, PWM-based speed control, and embedded algorithms</strong> for autonomous navigation and obstacle avoidance.</p>
-                                <a class="chip" href="CECS 347_FollowingRobot.pdf" target="_blank" rel="noopener">final report</a>
-                            </div>
-                            </article>
-                        </div>
-
-                        <h4 class="work-section">Software / Games</h4>
-                        <div class="project-list">
-
-                            <!-- Haunted Mansion -->
-                            <article class="project-card">
-                            <div class="project-media">
-                                <iframe
-                                    src="https://youtube.com/embed/M-3EMRzKbZg?mute=1"
-                                    title="Haunted Mansion Demo"
-                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="project-body">
-                                <h5>Haunted Mansion</h5>
-                                <p>Text and <strong>Python Turtle Graphics</strong> adventure game with branching routes and puzzles, written in <strong>Python</strong> and hosted on Replit.</p>
-                                <a class="chip" href="https://replit.com/@MichelleHerrer7/Project-125-Shall-We-Play-a-GameMHerrera" target="_blank">play</a>
-                            </div>
-                            </article>
-
-                            <!-- Simple GUI -->
-                            <article class="project-card">
-                            <div class="project-media">
-                                <img src="SimpleGUI.png" alt="Simple GUI screenshot" width="220">
-                            </div>
-                            <div class="project-body">
-                                <h5>Simple GUI</h5>
-                                <p>Developed a multi-window graphical interface using <strong>GTK</strong> and <strong>C++</strong>, featuring modular classes for a login system, text viewer, image viewer, and image creator. Implemented user authentication, credential editing, file I/O, and interactive image manipulation (rotate, save as PNG/JPEG). Designed three custom image scenes (Octopus, Dog House, Cat) rendered with Cairo graphics, and built a text search/highlight tool. Ensured modular GUI design, consistent layout containers, and single-instance application flow for clean transitions between dialogs.</p>
-                                <a class="chip" href="https://github.com/MHerrera2005/SimpleGUI_CECS275_FinalProject" target="_blank">GitHub</a>
-                            </div>
-                            </article>
-
-                            <!-- Space Invaders -->
-                            <article class="project-card">
-                            <div class="project-media">
-                                <iframe
-                                    src="https://www.youtube.com/embed/11VMUxfnPGM?mute=1&playlist=11VMUxfnPGM"
-                                    title="Space Invaders Demo"
-                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="project-body">
-                                <h5>Embedded Space Invaders</h5>
-                                <p>Designed and programmed a real-time Space Invaders–style game using the <strong>TM4C123 microcontroller, Nokia 5110 LCD, potentiometer (ADC input), tactile switches (GPIO interrupts), and a 4-bit R-2R DAC</strong> for sound. Implemented <strong>modular C firmware, SPI graphics rendering, SysTick-based game timing, collision detection, and PWM-driven audio effects</strong>. Integrated analog and digital peripherals for smooth player control, enemy motion, and shooting mechanics. Overcame challenges such as LCD flicker, debouncing issues, and analog jitter through optimized interrupt handling and signal filtering.</p>
-                                <a class="chip" href="CECS347_SpaceInvaders.pdf" target="_blank" rel="noopener">final report</a>
-                            </div>
-                            </article>
-
-                            <!-- Find the Missing Item -->
-                            <article class="project-card is-soon">
-                            <div class="project-media">
-                                <img src="FindMissingItem.jpg" alt="Find Missing Item screenshot" width="220">
-                            </div>
-                            <div class="project-body">
-                                <h5>Find the Missing Item!</h5>
-                                <p>Under production — a cozy puzzle game with crunchy pixel art. Player seeks and searched for items in a tricky environment. Will be developed with <strong>React.js</strong>. Coming soon!</p>
-                            </div>
-                            </article>
-
-                        </div>
-                        <p class="see-more"><a href="https://github.com/MHerrera2005" target="_blank">See more on GitHub →</a></p>
-                        </template>
-
-                        <template id="tpl-contact">
-                        <div class="contact-layout">
-                            <div>
-                            <h3>yayy mail!</h3>
-                            <p>The easiest way to contact me is through email.</p>
-                            <p><strong>email:</strong> <a href="mailto:mherrerachelly2005@gmail.com">mherrerachelly2005@gmail.com</a></p>
-                            <button class="aero-btn" onclick="window.location.href='mailto:mherrerachelly2005@gmail.com'">open email app</button>
-                            </div>
-                            <img src="logo.gif" alt="sparkly earth gif" class="earth-gif">
-                        </div>
-                        </template>
-                        <h6>© 2025 Michelle Herrera</h6>
                     </div>
                 </div>
-                <script>
-                (() => {
-                // Map button data to template + title
-                const WIN_INFO = {
-                    about:   { tpl: 'tpl-about',   title: 'about me' },
-                    links:   { tpl: 'tpl-links',   title: 'links' },
-                    work:    { tpl: 'tpl-work',    title: 'work' },
-                    contact: { tpl: 'tpl-contact', title: 'contact me' }
-                };
 
-                let zTop = 2000; // stacking
+                <div class="hero-profile">
+                    <div class="profile-frame">
+                        <img src="me.jpg" alt="Portrait of Michelle Herrera-Cuen">
+                    </div>
+                    <div class="profile-caption">
+                        <span>currently</span>
+                        <strong>building OmniCore</strong>
+                        <small>PACK Lab · CSULB</small>
+                    </div>
+                </div>
+            </article>
 
-                function createFloatingWindow(kind, x = 120, y = 120){
-                    const meta = WIN_INFO[kind];
-                    if (!meta) return;
+            <!-- ===== Quick information card ===== -->
+            <aside class="info-column">
+                <div class="info-card availability-card">
+                    <div class="card-kicker">01 / profile</div>
+                    <h2>Engineer.<br>Developer.<br>Researcher.</h2>
+                    <p>
+                        I enjoy working where software, electronics, and physical systems meet.
+                    </p>
+                    <button class="text-link window-btn" data-win="about" type="button">
+                        more about me →
+                    </button>
+                </div>
 
-                    const tmpl = document.getElementById(meta.tpl);
-                    if (!tmpl) return;
+                <div class="info-card stack-card">
+                    <div class="card-kicker">02 / toolkit</div>
+                    <h3>Hardware, software & intelligent systems.</h3>
+                    <div class="skill-list">
+                        <span>C / C++</span><span>Python</span><span>Java</span><span>JavaScript</span>
+                        <span>HTML / CSS</span><span>Verilog</span><span>SQL</span><span>ESP32</span>
+                        <span>Teensy</span><span>STM32</span><span>Arduino</span><span>TM4C123</span>
+                        <span>FPGA / Vivado</span><span>ESP-IDF</span><span>FreeRTOS</span><span>PlatformIO</span>
+                        <span>CMake</span><span>Git / GitHub</span><span>I2C / SPI / UART</span>
+                        <span>Sensors & Data Acquisition</span><span>Machine Learning</span><span>AI / IoT</span>
+                        <span>Robotics</span><span>Autonomous Systems</span><span>Digital Signal Processing</span>
+                        <span>Hardware / Software Co-Design</span>
+                    </div>
+                </div>
+            </aside>
+        </section>
 
-                    const shell = document.createElement('div');
-                    shell.className = 'fly-window';
-                    shell.style.left = x + 'px';
-                    shell.style.top  = y + 'px';
-                    shell.style.zIndex = ++zTop;
+        <!-- ===== Selected work preview ===== -->
+        <section class="preview-section" aria-labelledby="selected-work-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">03 / selected work</p>
+                    <h2 id="selected-work-title">Projects.</h2>
+                </div>
+                <button class="text-link window-btn" data-win="work" type="button">view all work →</button>
+            </div>
 
-                    shell.innerHTML = `
+            <div class="preview-grid">
+                <article class="preview-card">
+                    <span class="preview-number">01</span>
+                    <div>
+                        <p>Research · Robotics</p>
+                        <h3>OmniCore</h3>
+                        <span>No-code robotics platform</span>
+                    </div>
+                    <button class="arrow-button window-btn" data-win="work" type="button" aria-label="Open work">↗</button>
+                </article>
+
+                <article class="preview-card">
+                    <span class="preview-number">02</span>
+                    <div>
+                        <p>Embedded Systems</p>
+                        <h3>Autonomous Robots</h3>
+                        <span>Sensor-driven control with microcontrollers</span>
+                    </div>
+                    <button class="arrow-button window-btn" data-win="work" type="button" aria-label="Open work">↗</button>
+                </article>
+
+                <article class="preview-card">
+                    <span class="preview-number">03</span>
+                    <div>
+                        <p>Software · Games</p>
+                        <h3>Interactive Projects</h3>
+                        <span>Games, GUIs, and creative software</span>
+                    </div>
+                    <button class="arrow-button window-btn" data-win="work" type="button" aria-label="Open work">↗</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== Personal web badges / substack ===== -->
+        <section class="web-corner" aria-label="Personal website badges">
+            <div class="corner-heading">
+                <span>personal corner</span>
+                <span>✦</span>
+            </div>
+            <div class="badge-panel">
+                <div class="panel-label">substack: personal blog and communication channel</div>
+                <div class="panel-body">
+                    <canvas id="starBlinkies" width="220" height="185" aria-hidden="true"></canvas>
+                    <div class="panel-content blinkie-content">
+                        <!-- Substack here -->
+                        <div class="panel-content substack-content">
+                            <div class="substack-feature">
+                                
+                                <div class="quote-area">
+                                    <img src="plathquote.jpg" alt="Sylvia Plath quote">
+                                </div>
+
+                                <a
+                                    class="substack-link"
+                                    href="https://missingmichelle.substack.com/?utm_campaign=profile_chips"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src="substack.png" alt="Substack">
+                                    <span>read my writing↗</span>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="badge-panel">
+                <div class="panel-label">badges</div>
+                <div class="panel-body">
+                    <canvas id="starBadges" width="220" height="185" aria-hidden="true"></canvas>
+                    <div class="panel-content">
+                        <!-- badges here -->
+                        <img src="catbadge.png" alt="Cat badge">
+                        <img src="computerbadge.gif" alt="Computer badge">
+                        <img src="imaginationbadge.gif" alt="Imagination badge">
+                        <img src="made_with_windowsbadge.gif" alt="Made with Windows badge">
+                        <img src="madewithtwopawsbadge.jpg" alt="Made with two paws badge">
+                        <img src="VSCodebadge.png" alt="VS Code badge">
+                        <a href="https://lovesick.cafe/grrrl" target="_blank" rel="noopener noreferrer">
+                            <img src="madebyagirlbadge.png" alt="Made by a Girl badge">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Footer ===== -->
+        <footer class="site-footer">
+            <span>© 2025 Michelle Herrera-Cuen</span>
+            <span>designed & built by Michelle</span>
+            <button class="text-link window-btn" data-win="links" type="button">find me online →</button>
+        </footer>
+    </main>
+
+    <!-- ===== Music + SFX ===== -->
+    <audio id="bgm" src="backgroundmusic.mp3" loop preload="auto" autoplay muted playsinline></audio>
+    <audio id="sfx-hover" src="tick.mp3" preload="auto"></audio>
+    <audio id="sfx-click" src="click.mp3" preload="auto"></audio>
+
+    <!-- =========================================================
+         FLOATING WINDOW TEMPLATES
+         These remain template-based so your existing popup system
+         continues to work without changing the rest of the site.
+         ========================================================= -->
+
+    <!-- ===== ABOUT ===== -->
+    <template id="tpl-about">
+        <div class="about-layout">
+            <div class="about-photo-wrap">
+                <img src="me.jpg" alt="Michelle portrait" class="about-pic">
+                <span>CSULB · expected 2027</span>
+            </div>
+
+            <div class="about-text">
+                <p class="popup-eyebrow">hello, i'm Michelle</p>
+                <h2>Engineer, developer & researcher.</h2>
+
+                <p>
+                    <strong>Honors Student</strong> as part of the CSULB Honors Program
+                    · B.S. Computer Engineering <em>(Expected 2027)</em>.
+                </p>
+
+                <p>
+                    <strong>Research Student</strong> under Dr. Tairan Liu as part of the PACK Lab
+                    · B.S. Computer Engineering <em>(Expected 2027)</em>.
+                </p>
+
+                <p>
+                    My work sits at the intersection of <strong>robotics, embedded systems,
+                    machine learning, intelligent hardware, and software</strong>. I've built
+                    autonomous robots, FPGA-based digital systems, embedded games, IoT machine-learning
+                    pipelines, and research platforms for robotics.
+                </p>
+
+                <p>
+                    As an undergraduate researcher, I've worked on <strong>OmniCore</strong>, a
+                    configurable robotics ecosystem spanning platforms such as ESP32, Teensy,
+                    STM32, and Arduino. Omnicore allows students and researchers to develop
+                    and deploy robotic applications across multiple hardware platforms even with
+                    no prior coding experience. I've also explored <strong>bio-inspired robotics</strong>,
+                    including research involving robotic wings inspired by bird flight.
+                </p>
+
+                <p>
+                    Long term, I want to use engineering to do something meaningful for the planet.
+                    I'm especially interested in <strong>sustainable technology, environmental
+                    monitoring, marine and ecological applications, and intelligent systems that
+                    help us understand and protect the world around us.</strong>
+                </p>
+
+                <div class="about-details">
+                    <div>
+                        <h4>technical toolkit</h4>
+                        <p>
+                            C · C++ · C# · Python · Java · JavaScript · HTML · CSS · Verilog ·
+                            SQL · Git · GitHub · CMake · PlatformIO · ESP-IDF · FreeRTOS ·
+                            Vivado · FPGA development · LTSpice · machine learning · data analysis
+                        </p>
+                    </div>
+                    <div>
+                        <h4>hardware & systems</h4>
+                        <p>
+                            ESP32 · Teensy · STM32 · Arduino · TM4C123 · sensors · data acquisition ·
+                            GPIO · PWM · ADC · I2C · SPI · UART · wireless communication ·
+                            embedded firmware · hardware/software co-design
+                        </p>
+                    </div>
+                    <div>
+                        <h4>languages</h4>
+                        <p>
+                            English · Spanish · French · American Sign Language (ASL)
+                        </p>
+                    </div>
+                    <div>
+                        <h4>interests</h4>
+                        <p>
+                            Environmental technology · marine robotics · sustainability ·
+                            bio-inspired robotics · autonomous systems · creative technology · innovation
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- ===== LINKS ===== -->
+    <template id="tpl-links">
+        <div class="popup-intro">
+            <p class="popup-eyebrow">find me online</p>
+            <h2>Let's connect.</h2>
+            <p>Projects, professional work, code, and my resume.</p>
+        </div>
+
+        <div class="link-icon-grid">
+            <a class="icon-tile" href="https://replit.com/@MHerrera2005" target="_blank" rel="noopener">
+                <img src="replit.png" alt="" aria-hidden="true">
+                <span>Replit</span>
+                <small>games & experiments ↗</small>
+            </a>
+
+            <a class="icon-tile" href="https://github.com/MHerrera2005" target="_blank" rel="noopener">
+                <img src="github.png" alt="" aria-hidden="true">
+                <span>GitHub</span>
+                <small>code & projects ↗</small>
+            </a>
+
+            <a class="icon-tile" href="https://www.linkedin.com/in/mhc05" target="_blank" rel="noopener">
+                <img src="linkedin.png" alt="" aria-hidden="true">
+                <span>LinkedIn</span>
+                <small>professional profile ↗</small>
+            </a>
+
+            <a class="icon-tile" href="resume.pdf" target="_blank" rel="noopener">
+                <img src="pdf.png" alt="" aria-hidden="true">
+                <span>Resume</span>
+                <small>PDF · open ↗</small>
+            </a>
+        </div>
+    </template>
+
+    <!-- ===== WORK ===== -->
+    <template id="tpl-work">
+        <div class="popup-intro work-intro">
+            <div>
+                <p class="popup-eyebrow">03 / selected work</p>
+                <h2>Projects & experience.</h2>
+                <p>Engineering, robotics, research, intelligent systems, and technology for a better planet.</p>
+            </div>
+            <a class="chip chip-dark" href="mailto:mherrerachelly2005@gmail.com">work with me ↗</a>
+        </div>
+
+        <div class="work-stack">
+            <!-- Research -->
+            <h3 class="work-section">Research</h3>
+            <div class="project-list">
+
+                    <!-- Honors Thesis Project -->
+                    <article class="project-card">
+                        <div class="project-media image-media">
+                            <img src="omnicore.jpeg" alt="Omnicore">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-topline">
+                                <span>Research · Robotics</span>
+                                <span>2026 — present</span>
+                            </div>
+                            <h5>Omnicore</h5>
+                            <p>
+                                Research assistant under <strong>Dr. Tairan Liu</strong>, completing my <strong>honors thesis</strong>. Designing
+                                a lightweight, end-to-end robotics ecosystem inspired by PX4/Pixhawk.
+                                The system uses a configuration-over-coding workflow where users define
+                                robot topology, sensors, and kinematics through a desktop GUI that
+                                generates, compiles, and flashes firmware to low-cost microcontrollers.
+                                Building a custom robotics ecosystem for students and researchers to easily 
+                                configure, compile, and deploy robotic applications across multiple 
+                                hardware platforms. My thesis will likely be published in the <strong>IEEE Robotics and Automation Letters</strong>
+                                this fall.
+                            </p>
+                            <div class="project-tags">
+                                <span>ESP32</span><span>Teensy</span><span>Embedded C++</span><span>I2C / SPI / UART</span>
+                            </div>
+                            <a class="chip" href="https://github.com/pack-lab/OmniCore-configurator" target="_blank" rel="noopener">Omnicore ↗</a>
+                        </div>
+                    </article>
+
+                    <!-- Research Lab -->
+                    <article class="project-card">
+                        <div class="project-media image-media">
+                            <img src="PACK-bird.jpg" alt="PACK Lab Robotic Bird Wing System">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-topline">
+                                <span>Research · Robotics</span>
+                                <span>2026 — present</span>
+                            </div>
+                            <h5>PACK Lab</h5>
+                            <p>
+                                Research assistant under <strong>Dr. Tairan Liu</strong>. Designing
+                                and assisting in the development of robotic systems within PACK Lab.
+                                Currently designing a custom power distribution board for a robotic 
+                                bird-wing system, including power management, battery charging, and 
+                                sensor integration.
+                            </p>
+                            <div class="project-tags">
+                                <span>ESP32</span><span>Teensy</span><span>Embedded C++</span><span>I2C / SPI / UART</span>
+                            </div>
+                            <a class="chip" href="https://pack-lab.github.io/" target="_blank" rel="noopener">PACK Lab ↗</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Robotics -->
+            <h3 class="work-section">Robotics</h3>
+            <div class="project-list">
+
+                <!-- CECS 311 Line-Following Robot -->
+                <article class="project-card">
+                    <div class="project-media video-media">
+                        <iframe
+                            src="https://www.youtube.com/embed/4er7I_ktTnw?autoplay=1&mute=1&loop=1&playlist=4er7I_ktTnw"
+                            title="Line Following Robot Demo"
+                            allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>CECS 311 · Analog Systems</span>
+                            <span>Robotics</span>
+                        </div>
+                        <h5>Line-Following Robot</h5>
+                        <p>
+                            Designed and built a battery-powered line-following robot using analog
+                            components. Integrated <strong>photodiode light sensors, LM358 op-amp
+                            comparators, and an L293D H-Bridge motor driver</strong>, with circuit
+                            calculations and LTSpice simulation for subsystem validation.
+                        </p>
+                        <div class="project-tags">
+                            <span>LM358</span><span>L293D</span><span>LTSpice</span><span>Analog</span>
+                        </div>
+                        <a class="chip" href="CECS311_LineFollowingRobot.pdf" target="_blank" rel="noopener">final report ↗</a>
+                    </div>
+                </article>
+
+                <!-- CECS 346 Garage Door Car -->
+                <article class="project-card">
+                    <div class="project-media video-media">
+                        <iframe
+                            src="https://www.youtube.com/embed/ypGVIf2WqU8?mute=1"
+                            title="Garage Door Car Demo"
+                            allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>CECS 346 · Embedded Systems</span>
+                            <span>Robotics</span>
+                        </div>
+                        <h5>Garage Door Robotic Car</h5>
+                        <p>
+                            Collaboratively designed a smart garage and autonomous car system using
+                            the <strong>TM4C123GH6PM, stepper motors, and IR sensors</strong>.
+                            Implemented GPIO control, SysTick timers, interrupt-driven FSM logic,
+                            and sensor-based automation to coordinate the car and garage door.
+                        </p>
+                        <div class="project-tags">
+                            <span>C</span><span>TM4C123</span><span>FSM</span><span>Interrupts</span>
+                        </div>
+                        <a class="chip" href="CECS346_GarageDoor.pdf" target="_blank" rel="noopener">final report ↗</a>
+                    </div>
+                </article>
+
+                <!-- CECS 347 Following Robot -->
+                <article class="project-card">
+                    <div class="project-media video-media">
+                        <iframe
+                            src="https://www.youtube.com/embed/hOsNUmCHar0?mute=1"
+                            title="Object Following Robot Demo"
+                            allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>CECS 347 · Embedded Systems</span>
+                            <span>Autonomous Systems</span>
+                        </div>
+                        <h5>Object-Following Robot</h5>
+                        <p>
+                            Designed and programmed a two-mode robot car using a
+                            <strong>TM4C123 microcontroller, IR distance sensors, and DC motors</strong>
+                            controlled by PWM and ADC feedback. Implemented interrupt-driven mode
+                            switching, sensor calibration, and autonomous navigation algorithms.
+                        </p>
+                        <div class="project-tags">
+                            <span>ADC</span><span>PWM</span><span>IR Sensors</span><span>Embedded C</span>
+                        </div>
+                        <a class="chip" href="CECS 347_FollowingRobot.pdf" target="_blank" rel="noopener">final report ↗</a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Software / Games -->
+            <h3 class="work-section">Software / Games</h3>
+            <div class="project-list">
+
+                <!-- Haunted Mansion -->
+                <article class="project-card">
+                    <div class="project-media video-media">
+                        <iframe
+                            src="https://www.youtube.com/embed/M-3EMRzKbZg?mute=1"
+                            title="Haunted Mansion Demo"
+                            allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>Game Development</span>
+                            <span>Python</span>
+                        </div>
+                        <h5>Haunted Mansion</h5>
+                        <p>
+                            Text and <strong>Python Turtle Graphics</strong> adventure game with
+                            branching routes and puzzles, written in <strong>Python</strong> and
+                            hosted on Replit.
+                        </p>
+                        <div class="project-tags">
+                            <span>Python</span><span>Turtle</span><span>Game Logic</span>
+                        </div>
+                        <a class="chip" href="https://replit.com/@MichelleHerrer7/Project-125-Shall-We-Play-a-GameMHerrera" target="_blank" rel="noopener">play ↗</a>
+                    </div>
+                </article>
+
+                <!-- Simple GUI -->
+                <article class="project-card">
+                    <div class="project-media image-media">
+                        <img src="SimpleGUI.png" alt="Simple GUI screenshot">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>CECS 275 · Software</span>
+                            <span>C++</span>
+                        </div>
+                        <h5>Simple GUI</h5>
+                        <p>
+                            Multi-window graphical interface using <strong>GTK</strong> and
+                            <strong>C++</strong>, featuring login, text viewing, image viewing,
+                            image creation, authentication, file I/O, and interactive image
+                            manipulation with Cairo graphics.
+                        </p>
+                        <div class="project-tags">
+                            <span>C++</span><span>GTK</span><span>Cairo</span><span>GUI</span>
+                        </div>
+                        <a class="chip" href="https://github.com/MHerrera2005/SimpleGUI_CECS275_FinalProject" target="_blank" rel="noopener">GitHub ↗</a>
+                    </div>
+                </article>
+
+                <!-- Space Invaders -->
+                <article class="project-card">
+                    <div class="project-media video-media">
+                        <iframe
+                            src="https://www.youtube.com/embed/11VMUxfnPGM?mute=1&playlist=11VMUxfnPGM"
+                            title="Space Invaders Demo"
+                            allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>CECS 347 · Embedded Game</span>
+                            <span>C</span>
+                        </div>
+                        <h5>Embedded Space Invaders</h5>
+                        <p>
+                            Real-time Space Invaders–style game using the
+                            <strong>TM4C123, Nokia 5110 LCD, ADC potentiometer, GPIO interrupts,
+                            and a 4-bit R-2R DAC</strong>. Implemented SPI graphics, SysTick timing,
+                            collision detection, PWM audio, and optimized interrupt handling.
+                        </p>
+                        <div class="project-tags">
+                            <span>TM4C123</span><span>SPI</span><span>SysTick</span><span>DAC</span>
+                        </div>
+                        <a class="chip" href="CECS347_SpaceInvaders.pdf" target="_blank" rel="noopener">final report ↗</a>
+                    </div>
+                </article>
+
+                <!-- Find the Missing Item -->
+                <article class="project-card is-soon">
+                    <div class="project-media image-media">
+                        <img src="FindMissingItem.jpg" alt="Find Missing Item screenshot">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>In development</span>
+                            <span>Coming soon</span>
+                        </div>
+                        <h5>Find the Missing Item!</h5>
+                        <p>
+                            A cozy puzzle game with crunchy pixel art. The player searches for
+                            hidden items in a tricky environment. Planned with <strong>React.js</strong>.
+                        </p>
+                        <div class="project-tags">
+                            <span>React</span><span>Game Dev</span><span>Pixel Art</span>
+                        </div>
+                        <span class="chip chip-muted">in production</span>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Involvement / Clubs -->
+            <h3 class="work-section">Involvement / Clubs</h3>
+            <div class="project-list">
+                <!-- Society of Automotive Engineers (SAE) -->
+                <article class="project-card">
+                    <div class="project-media image-media">
+                        <img src="SAE.jpg" alt="SAE Baja Car">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>SAE Baja Car</span>
+                            <span>STM32</span>
+                        </div>
+                        <h5>Data Acquisition System</h5>
+                        <p>
+                            Led Data Acquisition Team developing <strong>ESP32</strong> and
+                            <strong>Raspberry Pi</strong> systems for the Baja SAE car. Implemented 
+                            sensor data collection, real-time telemetry, and data logging for performance 
+                            analysis. Achieved improved vehicle performance through data-driven insights 
+                            and optimization of suspension and drivetrain systems such as GPS, Accelerometer,
+                            Suspension Height Sensors, Brake Temperature Sensors, RTD Temperature Sensors,
+                            RPM Sensors, and Logic Converter. Most contribution was in <strong>STM32</strong> 
+                            firmware development and sensor integration. 
+                        </p>
+                        <div class="project-tags">
+                            <span>ESP32</span><span>Raspberry Pi</span><span>Leadership</span>
+                        </div>
+                        <a class="chip" href="https://www.natewake.dev/projects/sensors" target="_blank" rel="noopener">GitHub ↗</a>
+                    </div>
+                </article>
+
+                <!-- Women in Computing (WiC) -->
+                <article class="project-card">
+                    <div class="project-media image-media">
+                        <img src="WiC.jpg" alt="Women in Computing (WiC)">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>Women in Computing (WiC)</span>
+                            <span>Women Empowerment</span>
+                        </div>
+                        <h5>Marina Hacks and Presentation Skills</h5>
+                        <p>
+                            Organized and led data conventiono <strong>Marina Hacks 24 and 25</strong> for WiC members, 
+                            providing workshops on data analysis, visualization, and interpretation. 
+                            Developed curriculum and materials to enhance members' understanding of 
+                            data-driven decision-making in computing and technology fields. <strong>Presented</strong>
+                            and promoted computer science to <strong>elementrary students</strong> in order
+                            to inspire the next generation of female technologists. Completed
+                            internship with WiC to improve <strong>presentation skills</strong> and 
+                            public speaking for members, including mock presentations, feedback sessions, 
+                            and confidence-building exercises.
+                        </p>
+                        <div class="project-tags">
+                            <span>Software Engineering</span><span>Presentation Skills</span><span>Interpersonal Communication</span>
+                        </div>
+                        <a class="chip" href="https://csulbwic.com/" target="_blank" rel="noopener">WiC ↗</a>
+                    </div>
+                </article>
+
+                <!-- IEEE -->
+                <article class="project-card is-soon">
+                    <div class="project-media image-media">
+                        <img src="IEEE.jpg" alt="IEEE">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-topline">
+                            <span>IEEE</span>
+                            <span>Presentation Skills</span><span>Workshop Planning</span>
+                        </div>
+                        <h5>IEEE Student Chapter</h5>
+                        <p>
+                            Led initiatives to promote diversity and inclusion in computing and technology 
+                            fields. Organized events and workshops to engage students and foster a supportive 
+                            community. Presented on topics such as <strong>robotics, embedded systems, and 
+                            CPU architecture</strong> to utilze free online plaforms and resources to build
+                            their own solid-state circuits.
+                        </p>
+                        <div class="project-tags">
+                            <span>Circuitry</span><span>Board Design</span><span>Workshop Organization</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="work-footer">
+                <p>More projects and code are available on GitHub.</p>
+                <a class="chip chip-dark" href="https://github.com/MHerrera2005" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+        </div>
+    </template>
+
+    <!-- ===== CONTACT ===== -->
+    <template id="tpl-contact">
+        <div class="contact-layout">
+            <div>
+                <p class="popup-eyebrow">let's talk</p>
+                <h2>Have a project in mind?</h2>
+                <p>
+                    The easiest way to reach me is through email. I'm interested in
+                    engineering, software, embedded systems, robotics, and creative technical work.
+                </p>
+                <a class="contact-email" href="mailto:mherrerachelly2005@gmail.com">
+                    mherrerachelly2005@gmail.com
+                </a>
+                <div class="contact-actions">
+                    <a class="chip chip-dark" href="mailto:mherrerachelly2005@gmail.com">open email app ↗</a>
+                    <a class="chip" href="resume.pdf" target="_blank" rel="noopener">resume ↗</a>
+                </div>
+            </div>
+            <div class="contact-art">
+                <img src="logo.gif" alt="Michelle's logo">
+            </div>
+        </div>
+    </template>
+
+    <!-- ===== Floating window system ===== -->
+    <script>
+        (() => {
+            // Map button data to template + title
+            const WIN_INFO = {
+                about:   { tpl: 'tpl-about',   title: 'about me' },
+                links:   { tpl: 'tpl-links',   title: 'links' },
+                work:    { tpl: 'tpl-work',    title: 'work' },
+                contact: { tpl: 'tpl-contact', title: 'contact me' }
+            };
+
+            let zTop = 2000; // stacking
+
+            function createFloatingWindow(kind, x = 120, y = 120) {
+                const meta = WIN_INFO[kind];
+                if (!meta) return;
+
+                const tmpl = document.getElementById(meta.tpl);
+                if (!tmpl) return;
+
+                const shell = document.createElement('div');
+                shell.className = 'fly-window';
+                shell.style.left = `${x}px`;
+                shell.style.top = `${y}px`;
+                shell.style.zIndex = ++zTop;
+
+                shell.innerHTML = `
                     <div class="fly-header">
-                        <span class="fly-title">🍏 ${meta.title}</span>
+                        <span class="fly-title"><span class="window-dot"></span>${meta.title}</span>
                         <div class="fly-controls">
-                        <button class="fly-btn minimize" aria-label="Minimize" title="Minimize">🗕</button>
-                        <button class="fly-btn maximize" aria-label="Maximize" title="Maximize">🗖</button>
-                        <button class="fly-btn close"    aria-label="Close"    title="Close">✕</button>
+                            <button class="fly-btn minimize" aria-label="Minimize" title="Minimize">−</button>
+                            <button class="fly-btn maximize" aria-label="Maximize" title="Maximize">□</button>
+                            <button class="fly-btn close" aria-label="Close" title="Close">×</button>
                         </div>
                     </div>
                     <div class="fly-content"></div>
-                    `;
+                `;
 
-                    const content = shell.querySelector('.fly-content');
-                    content.appendChild(tmpl.content.cloneNode(true));
+                const content = shell.querySelector('.fly-content');
+                content.appendChild(tmpl.content.cloneNode(true));
 
-                    // close
-                    shell.querySelector('.close').addEventListener('click', () => shell.remove());
+                // Close
+                shell.querySelector('.close').addEventListener('click', () => shell.remove());
 
-                    // minimize (toggle content)
-                    shell.querySelector('.minimize').addEventListener('click', () => {
+                // Minimize
+                shell.querySelector('.minimize').addEventListener('click', () => {
                     shell.classList.toggle('is-min');
-                    });
+                });
 
-                    // maximize (toggle to near-full but leave borders visible)
-                    shell.querySelector('.maximize').addEventListener('click', () => {
+                // Maximize
+                shell.querySelector('.maximize').addEventListener('click', () => {
                     shell.classList.toggle('is-max');
-                    if (shell.classList.contains('is-max')) shell.style.zIndex = ++zTop;
-                    });
+                    shell.style.zIndex = ++zTop;
+                });
 
-                    // focus on mousedown
-                    shell.addEventListener('mousedown', () => shell.style.zIndex = ++zTop);
+                // Focus
+                shell.addEventListener('mousedown', () => {
+                    shell.style.zIndex = ++zTop;
+                });
 
-                    // drag
-                    makeDraggable(shell, shell.querySelector('.fly-header'));
+                // Drag
+                makeDraggable(shell, shell.querySelector('.fly-header'));
 
-                    document.body.appendChild(shell);
-                }
+                document.body.appendChild(shell);
+            }
 
-                function makeDraggable(winEl, handleEl){
-                    let startX=0, startY=0, origX=0, origY=0, dragging=false;
+            function makeDraggable(winEl, handleEl) {
+                let startX = 0, startY = 0, origX = 0, origY = 0, dragging = false;
 
-                    const onDown = (e) => {
+                const onDown = (e) => {
+                    if (e.target.closest('.fly-btn')) return;
+
                     dragging = true;
                     const point = ('touches' in e) ? e.touches[0] : e;
                     startX = point.clientX;
                     startY = point.clientY;
+
                     const rect = winEl.getBoundingClientRect();
                     origX = rect.left + window.scrollX;
-                    origY = rect.top  + window.scrollY;
+                    origY = rect.top + window.scrollY;
+
                     document.addEventListener('mousemove', onMove);
-                    document.addEventListener('touchmove', onMove, {passive:false});
+                    document.addEventListener('touchmove', onMove, { passive: false });
                     document.addEventListener('mouseup', onUp);
                     document.addEventListener('touchend', onUp);
-                    e.preventDefault();
-                    };
 
-                    const onMove = (e) => {
+                    e.preventDefault();
+                };
+
+                const onMove = (e) => {
                     if (!dragging) return;
+
                     const point = ('touches' in e) ? e.touches[0] : e;
                     const dx = point.clientX - startX;
                     const dy = point.clientY - startY;
-                    winEl.style.left = (origX + dx) + 'px';
-                    winEl.style.top  = (origY + dy) + 'px';
-                    if ('touches' in e) e.preventDefault();
-                    };
 
-                    const onUp = () => {
+                    winEl.style.left = `${origX + dx}px`;
+                    winEl.style.top = `${origY + dy}px`;
+
+                    if ('touches' in e) e.preventDefault();
+                };
+
+                const onUp = () => {
                     dragging = false;
                     document.removeEventListener('mousemove', onMove);
                     document.removeEventListener('touchmove', onMove);
                     document.removeEventListener('mouseup', onUp);
                     document.removeEventListener('touchend', onUp);
-                    };
+                };
 
-                    handleEl.addEventListener('mousedown', onDown);
-                    handleEl.addEventListener('touchstart', onDown, {passive:false});
-                }
+                handleEl.addEventListener('mousedown', onDown);
+                handleEl.addEventListener('touchstart', onDown, { passive: false });
+            }
 
-                // Bind buttons
-                document.querySelectorAll('.window-btn').forEach((btn, idx) => {
-                    btn.addEventListener('click', () => {
-                    // Stagger new windows a bit
-                    createFloatingWindow(btn.dataset.win, 140 + idx*24, 120 + idx*18);
-                    // Optional: play your click SFX if present
+            // Bind buttons
+            document.querySelectorAll('.window-btn').forEach((btn, idx) => {
+                btn.addEventListener('click', () => {
+                    createFloatingWindow(btn.dataset.win, 120 + (idx % 4) * 28, 100 + (idx % 4) * 24);
+
+                    // Play click SFX if present
                     const clickSfx = document.getElementById('sfx-click');
                     if (clickSfx) {
-                        const c = clickSfx.cloneNode(true); c.volume = 0.8; c.play().catch(()=>{});
+                        const c = clickSfx.cloneNode(true);
+                        c.volume = 0.55;
+                        c.play().catch(() => {});
                     }
-                    });
                 });
+            });
+        })();
+    </script>
 
-                })();
-                </script>
-
-                <!-- RIGHT COLUMN that stacks two panels -->
-                <div class="side-column" aria-hidden="false">
-                <!-- Top (badges) -->
-                <aside class="side-panel">
-                    <div class="panel-header"><span>🍏 badges</span></div>
-                    <div class="panel-body">
-                        <canvas id="starBadges" width="220" height="185"></canvas>
-                        <div class="panel-content">
-                            <!-- badges here -->
-                            <img src="catbadge.png" alt="badge 1">
-                            <img src="computerbadge.gif" alt="badge 2">
-                            <img src="imaginationbadge.gif" alt="badge 3">
-                            <img src="made_with_windowsbadge.gif" alt="badge 4">
-                            <img src="madewithtwopawsbadge.jpg" alt="badge 5">
-                            <img src="VSCodebadge.png" alt="badge 6">
-                            <a href="https://lovesick.cafe/grrrl" target="_blank" rel="noopener noreferrer">
-                                <img src="madebyagirlbadge.png" alt="Made by a Girl badge">
-                            </a>
-                        </div>
-                    </div>
-                </aside>
-            <!-- Bottom (blinkies) -->
-            <aside class="side-panel">
-                <div class="panel-header"><span>🍏 blinkies</span></div>
-                <div class="panel-body">
-                <canvas id="starBlinkies" width="220" height="185"></canvas>
-                <div class="panel-content">
-                        <!-- blinkies here -->
-                        <img src="aliengirlblinkie.gif" alt="blinkie 1">
-                        <img src="blueskyblinkie.gif" alt="blinkie 2">
-                        <img src="blueblinkie.gif" alt="blinkie 3">
-                        <img src="rainbowsblinkie.gif" alt="blinkie 4">
-                        <img src="applesblinkie.gif" alt="blinkie 5">
-                        <img src="greenbestblinkie.gif" alt="blinkie 6">
-                        <img src="UnderTheSeablinkie.gif" alt="blinkie 7">
-                </div>
-                </div>
-            </aside>
-            </div>
-        </div>
-        <div class="ticker bottom" aria-hidden="true"></div>
-        <!-- embedded JavaScript for pixel star rain for each panel -->
-        <script>
-            (() => {
+    <!-- ===== Pixel star animation for personal panels ===== -->
+    <script>
+        (() => {
             const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            // Pastel palette (green, pink, purple, blue, yellow)
+            // Pastel palette for the personal corner
             const STAR_COLORS = ['#9BF6A9', '#FFB3DA', '#C8A6FF', '#9DD1FF', '#FFF59E'];
 
-            // 7x7 pixel star mask (1 = draw, 0 = empty). Symmetric, chunky Y2K rating-star vibe.
-            // Scale each "pixel" by s.px to render. derived from mathematical arrays!
+            // 7x7 pixel star mask
             const STAR_MASK = [
                 [0,0,1,1,1,0,0],
                 [0,1,1,1,1,1,0],
@@ -412,87 +907,103 @@
                 [0,1,1,1,1,1,0],
                 [0,0,1,1,1,0,0],
             ];
+
             const MASK_W = STAR_MASK[0].length;
             const MASK_H = STAR_MASK.length;
 
             function initStarPanel(canvasId) {
                 const canvas = document.getElementById(canvasId);
                 if (!canvas) return;
+
                 const ctx = canvas.getContext('2d', { alpha: true });
                 ctx.imageSmoothingEnabled = false;
-
-                function resizeCanvas() {
-                const rect = canvas.getBoundingClientRect();
-                const scale = window.devicePixelRatio || 1;
-                canvas.width  = Math.max(1, Math.floor(rect.width  * scale));
-                canvas.height = Math.max(1, Math.floor(rect.height * scale));
-                spawnStars();
-                }
 
                 const stars = [];
                 let targetCount = 0;
 
+                function resizeCanvas() {
+                    const rect = canvas.getBoundingClientRect();
+                    const scale = window.devicePixelRatio || 1;
+
+                    canvas.width = Math.max(1, Math.floor(rect.width * scale));
+                    canvas.height = Math.max(1, Math.floor(rect.height * scale));
+                    spawnStars();
+                }
+
                 function spawnStars() {
-                // slightly sparser than before (bigger sprites)
-                targetCount = Math.max(8, Math.floor((canvas.width * canvas.height) / 4200));
-                while (stars.length < targetCount) stars.push(makeStar(true));
-                if (stars.length > targetCount) stars.length = targetCount;
+                    targetCount = Math.max(8, Math.floor((canvas.width * canvas.height) / 4200));
+
+                    while (stars.length < targetCount) stars.push(makeStar(true));
+                    if (stars.length > targetCount) stars.length = targetCount;
                 }
 
                 function makeStar(randomY = false) {
-                // base pixel size (device pixels) — tweak for chunkiness
-                const px = 2 + Math.floor(Math.random() * 2); // 2–3
-                const spriteH = MASK_H * px;
-                const spriteW = MASK_W * px;
+                    const px = 2 + Math.floor(Math.random() * 2);
+                    const spriteH = MASK_H * px;
+                    const spriteW = MASK_W * px;
 
-                const x = Math.random() * (canvas.width - spriteW);
-                const y = randomY ? Math.random() * (canvas.height - spriteH) : -spriteH - Math.random() * 40;
+                    const x = Math.random() * Math.max(1, canvas.width - spriteW);
+                    const y = randomY
+                        ? Math.random() * Math.max(1, canvas.height - spriteH)
+                        : -spriteH - Math.random() * 40;
 
-                // speed scales with canvas height a bit
-                const speed = (25 + Math.random() * 55) * (canvas.height / 320);
-                const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
-                const alpha = 0.9; // solidish
-                return { x, y, px, color, speed, alpha, w: spriteW, h: spriteH };
+                    const speed = (25 + Math.random() * 55) * (canvas.height / 320);
+                    const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+
+                    return {
+                        x, y, px, color,
+                        speed,
+                        alpha: 0.75,
+                        w: spriteW,
+                        h: spriteH
+                    };
                 }
 
                 function drawStar(s) {
-                const startX = Math.floor(s.x);
-                const startY = Math.floor(s.y);
-                ctx.globalAlpha = s.alpha;
-                ctx.fillStyle = s.color;
+                    const startX = Math.floor(s.x);
+                    const startY = Math.floor(s.y);
 
-                // iterate mask and draw scaled pixels
-                for (let row = 0; row < MASK_H; row++) {
-                    for (let col = 0; col < MASK_W; col++) {
-                    if (STAR_MASK[row][col]) {
-                        ctx.fillRect(startX + col * s.px, startY + row * s.px, s.px, s.px);
+                    ctx.globalAlpha = s.alpha;
+                    ctx.fillStyle = s.color;
+
+                    for (let row = 0; row < MASK_H; row++) {
+                        for (let col = 0; col < MASK_W; col++) {
+                            if (STAR_MASK[row][col]) {
+                                ctx.fillRect(
+                                    startX + col * s.px,
+                                    startY + row * s.px,
+                                    s.px,
+                                    s.px
+                                );
+                            }
+                        }
                     }
-                    }
-                }
-                ctx.globalAlpha = 1;
+
+                    ctx.globalAlpha = 1;
                 }
 
                 let rafId = null;
                 let last = performance.now();
 
                 function step(now) {
-                const dt = Math.min(0.05, (now - last) / 1000);
-                last = now;
+                    const dt = Math.min(0.05, (now - last) / 1000);
+                    last = now;
 
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                for (let i = 0; i < stars.length; i++) {
-                    const s = stars[i];
-                    s.y += s.speed * dt;
+                    for (let i = 0; i < stars.length; i++) {
+                        const s = stars[i];
+                        s.y += s.speed * dt;
 
-                    if (s.y > canvas.height) {
-                    stars[i] = makeStar(false);
-                    continue;
+                        if (s.y > canvas.height) {
+                            stars[i] = makeStar(false);
+                            continue;
+                        }
+
+                        drawStar(s);
                     }
-                    drawStar(s);
-                }
 
-                rafId = requestAnimationFrame(step);
+                    rafId = requestAnimationFrame(step);
                 }
 
                 const ro = new ResizeObserver(resizeCanvas);
@@ -500,87 +1011,81 @@
                 resizeCanvas();
 
                 if (!prefersReduced) {
-                last = performance.now();
-                rafId = requestAnimationFrame(step);
+                    last = performance.now();
+                    rafId = requestAnimationFrame(step);
                 }
 
-                window.addEventListener('pagehide', () => { if (rafId) cancelAnimationFrame(rafId); }, { once: true });
+                window.addEventListener('pagehide', () => {
+                    if (rafId) cancelAnimationFrame(rafId);
+                }, { once: true });
             }
 
-            // init both stacked right-side canvases
             initStarPanel('starBadges');
             initStarPanel('starBlinkies');
-            })();
-        </script>
-        <!-- embedded JavaScript for audio and button effects -->
-        <script>
-            (() => {
+        })();
+    </script>
+
+    <!-- ===== Audio and button effects ===== -->
+    <script>
+        (() => {
             const bgm = document.getElementById('bgm');
             const sfxHover = document.getElementById('sfx-hover');
             const sfxClick = document.getElementById('sfx-click');
             const muteBtn = document.getElementById('muteToggle');
-            const aeroButtons = document.querySelectorAll('.aero-btn');
 
-            let audioArmed = false;     // becomes true on first user interaction
-            let muted = false;          // one toggle to mute music + SFX together (easy)
+            let audioArmed = false;
+            let muted = false;
 
-            // try to play music only after a user gesture(buffer and stability test)
+            // Browser autoplay requires a user gesture.
             const armAudio = () => {
                 if (audioArmed) return;
+
                 audioArmed = true;
-                bgm.volume = 0.5; // comfy default
+                bgm.volume = 0.35;
+
                 if (!muted) {
-                bgm.play().catch(() => {/* ignored: user can press mute later */});
+                    bgm.play().catch(() => {});
                 }
+
                 window.removeEventListener('click', armAudio);
                 window.removeEventListener('keydown', armAudio);
                 window.removeEventListener('touchstart', armAudio);
             };
+
             window.addEventListener('click', armAudio);
             window.addEventListener('keydown', armAudio);
-            window.addEventListener('touchstart', armAudio, {passive:true});
+            window.addEventListener('touchstart', armAudio, { passive: true });
 
-            // Mute toggle
-            function setMuted(state){
+            function setMuted(state) {
                 muted = state;
                 bgm.muted = muted;
+
                 muteBtn.classList.toggle('muted', muted);
-                muteBtn.setAttribute('aria-pressed', !muted ? 'true' : 'false');
-                muteBtn.textContent = muted ? '🔇 sound off' : '🔈 sound on';
+                muteBtn.setAttribute('aria-pressed', String(muted));
+                muteBtn.innerHTML = muted
+                    ? '<span aria-hidden="true">🔇</span> sound off'
+                    : '<span aria-hidden="true">🔈</span> sound on';
             }
+
             muteBtn.addEventListener('click', () => setMuted(!muted));
 
-            // Helper: play a short SFX safely (clone so rapid clicks overlap)
-            function playSfx(audioEl){
-                if (muted) return;
+            function playSfx(audioEl) {
+                if (muted || !audioEl) return;
+
                 const snd = audioEl.cloneNode(true);
-                snd.volume = 0.8;
-                snd.play().catch(()=>{});
+                snd.volume = 0.5;
+                snd.play().catch(() => {});
             }
 
-            // Hover tick with per-button cooldown (avoid machine-gun hover)
-            const HOVER_COOLDOWN_MS = 200;
-            aeroButtons.forEach(btn => {
-                btn.addEventListener('mouseenter', () => {
-                const now = performance.now();
-                const last = +btn.dataset.lastHover || 0;
-                if (now - last >= HOVER_COOLDOWN_MS) {
-                    btn.dataset.lastHover = now;
-                    playSfx(sfxHover);
-                }
-                });
-
-                btn.addEventListener('click', () => {
-                playSfx(sfxClick);
-                // optional small visual press effect
-                btn.style.transform = 'translateY(0)';
-                setTimeout(()=> btn.style.transform = '', 80);
-                });
+            // Hover / click feedback
+            document.querySelectorAll('button, .chip, .nav-resume, .brand, .icon-tile').forEach((element) => {
+                element.addEventListener('mouseenter', () => playSfx(sfxHover));
+                element.addEventListener('click', () => playSfx(sfxClick));
             });
 
-            // Start in "music on" visual state (but won’t actually play until user interacts)
+            // Start in "sound on" visual state; actual playback waits for interaction.
             setMuted(false);
-            })();
-        </script>
-    </body>
+        })();
+    </script>
+</body>
 </html>
